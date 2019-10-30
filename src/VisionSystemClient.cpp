@@ -53,6 +53,20 @@ bool VisionSystemClient::updateLocation() {
   return receive(&location);
 }
 
+/*
+ * TODO: Consider making mission() into a template function, except handling the Coordinate
+ * case differently somehow.
+ */
+
+bool VisionSystemClient::mission(double message) {
+  mSerial->write(OP_MISSION);
+  mSerial->print(message);
+  mSerial->write(FLUSH_SEQUENCE, 4);
+  mSerial->flush();
+  
+  return receive(NULL);
+}
+
 bool VisionSystemClient::mission(int message) {
   mSerial->write(OP_MISSION);
   mSerial->print(message);
@@ -62,7 +76,7 @@ bool VisionSystemClient::mission(int message) {
   return receive(NULL);
 }
 
-bool VisionSystemClient::mission(double message) {
+bool VisionSystemClient::mission(char *message) {  // Allow mission() calls with strings.
   mSerial->write(OP_MISSION);
   mSerial->print(message);
   mSerial->write(FLUSH_SEQUENCE, 4);
