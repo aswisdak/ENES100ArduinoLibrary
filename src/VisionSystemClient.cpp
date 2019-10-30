@@ -22,7 +22,7 @@ bool VisionSystemClient::ping() {
   mSerial->write((byte) OP_PING);
   mSerial->write(FLUSH_SEQUENCE, 4);
   mSerial->flush();
-  
+
   return receive(NULL);
 }
 
@@ -30,17 +30,17 @@ bool VisionSystemClient::begin(const char* teamName, int teamType, int markerId,
   mMarkerId = markerId;
   mSerial = new SoftwareSerial(rxPin, txPin);
   mSerial->begin(9600);
-  
+
   while (mSerial->available()) {
     mSerial->read();
   }
-  
+
   mSerial->write(OP_BEGIN);
   mSerial->write(teamType);
   mSerial->write(teamName);
   mSerial->write(FLUSH_SEQUENCE, 4);
   mSerial->flush();
-  
+
   return receive(&destination);
 }
 
@@ -49,7 +49,7 @@ bool VisionSystemClient::updateLocation() {
   mSerial->write((byte*) &mMarkerId, 2);
   mSerial->write(FLUSH_SEQUENCE, 4);
   mSerial->flush();
-  
+
   return receive(&location);
 }
 
@@ -63,7 +63,7 @@ bool VisionSystemClient::mission(double message) {
   mSerial->print(message);
   mSerial->write(FLUSH_SEQUENCE, 4);
   mSerial->flush();
-  
+
   return receive(NULL);
 }
 
@@ -72,7 +72,7 @@ bool VisionSystemClient::mission(int message) {
   mSerial->print(message);
   mSerial->write(FLUSH_SEQUENCE, 4);
   mSerial->flush();
-  
+
   return receive(NULL);
 }
 
@@ -81,7 +81,7 @@ bool VisionSystemClient::mission(char *message) {  // Allow mission() calls with
   mSerial->print(message);
   mSerial->write(FLUSH_SEQUENCE, 4);
   mSerial->flush();
-  
+
   return receive(NULL);
 }
 
@@ -94,7 +94,7 @@ bool VisionSystemClient::mission(Coordinate& message) {
   mSerial->print(message.theta);
   mSerial->write(FLUSH_SEQUENCE, 4);
   mSerial->flush();
-  
+
   return receive(NULL);
 }
 
@@ -102,7 +102,7 @@ bool VisionSystemClient::receive(Coordinate* coordinate) {
   unsigned long start = millis();
   int pos = 0;
   byte buffer[13];
-  
+
   while (millis() - start < 120 && pos < 13) {
     if (mSerial->available()) {
       buffer[pos++] = mSerial->read();
@@ -120,6 +120,6 @@ bool VisionSystemClient::receive(Coordinate* coordinate) {
       }
     }
   }
-  
+
   return false;
 }
