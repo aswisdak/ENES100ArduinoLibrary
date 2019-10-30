@@ -31,4 +31,7 @@ void loop() {
     
     // Transmit the number of candles that are lit
     Enes100.mission(4);
+
+    // Put code in an inifinite loop to ensure a finite amount of mission calls.
+    while(1);
 }

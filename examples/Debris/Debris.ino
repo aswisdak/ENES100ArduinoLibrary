@@ -35,4 +35,7 @@ void loop() {
 
     // Transmit the mass of the debris in grams
     Enes100.mission(2.43);
+
+    // Put code in an inifinite loop to ensure a finite amount of mission calls.
+    while(1);
 }

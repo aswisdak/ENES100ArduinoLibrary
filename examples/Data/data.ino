@@ -31,4 +31,7 @@ void loop() {
 
     // Transmit the message from the arduino
     Enes100.mission('M');
+
+    // Put code in an inifinite loop to ensure a finite amount of mission calls.
+    while(1);
 }

@@ -25,4 +25,7 @@ void loop() {
 
     // Transmit the color of the LED
     Enes100.mission("Green");
+
+    // Put code in an inifinite loop to ensure a finite amount of mission calls.
+    while(1);
 }

@@ -34,4 +34,7 @@ void loop() {
 
     // Transmit the depth of the pool in mm
     Enes100.mission(44.2);
+
+     // Put code in an inifinite loop to ensure a finite amount of mission calls.
+    while(1);
 }
