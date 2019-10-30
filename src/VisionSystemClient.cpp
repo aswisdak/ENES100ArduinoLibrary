@@ -76,7 +76,7 @@ bool VisionSystemClient::mission(int message) {
   return receive(NULL);
 }
 
-bool VisionSystemClient::mission(char *message) {  // Allow mission() calls with strings.
+bool VisionSystemClient::mission(const char *message) {  // Allow mission() calls with strings.
   mSerial->write(OP_MISSION);
   mSerial->print(message);
   mSerial->write(FLUSH_SEQUENCE, 4);
