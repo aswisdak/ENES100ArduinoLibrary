@@ -17,6 +17,7 @@ void loop() {
     while(!Enes100.updateLocation()) {
         Enes100.println("404 Not Found");
     }
+    //Once updateLocation() is successfull, print out location coordinates
     Enes100.print("OSV is at (");
     Enes100.print(Enes100.location.x);
     Enes100.print(", ");
