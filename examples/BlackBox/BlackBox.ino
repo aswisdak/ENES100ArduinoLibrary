@@ -3,8 +3,7 @@
 void setup() {
     //Allow Wifi Modules Time to Start Up
     delay(2000);
-    // Initialize Enes100 library
-    // Team Name, Mission Type, Marker ID, TX Pin, RX Pin
+    // Initialize Enes100 library (Team Name, Mission Type, Marker ID, TX Pin, RX Pin)
     Enes100.begin("Black Box Team", BLACK_BOX, 3, 8, 9);
 
     // Transmit the color of the LED
